@@ -296,7 +296,7 @@ function validateForm(){
                                    <div class="col-sm-6 mb-3 mb-sm-0">
 
                                         <div class="form-floating mt-3 mb-3">
-                                            <input type="text" class="form-control form-control-user"placeholder="Mobile_Number" name="Mobile_Number" id="mblnum" maxlength="10"required pattern="[6789][0-9]{10}"><small class="small error">*<span id="mblErr" class="small"></span></small>
+                                            <input type="text" class="form-control form-control-user"placeholder="Mobile_Number" name="Mobile_Number" id="mblnum" maxlength="10"required pattern="[6789][0-9]{9}"><small class="small error">*<span id="mblErr" class="small"></span></small>
 
                                             <label for="pwd" class="small">Mobile Number</label>
                                         </div>
