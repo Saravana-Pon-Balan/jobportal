@@ -23,7 +23,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <style>
-      #message {
+ #message {
   display:none;
   background: #f1f1f1;
   color: #000;
@@ -65,6 +65,178 @@
 }
 
   </style>
+<script>
+function printError(elemId, hintMsg) {
+    document.getElementById(elemId).innerHTML = hintMsg;
+}
+function validateForm(){
+    var name = document.myForm.First_Name.value;
+    var dob = document.myForm.dob.value;
+    var Email_Id = document.myForm.Email_Id.value;
+    var Mobile_Number = document.myForm.Mobile_Number.value;
+    var Gender = document.myForm.Gender.value;
+    var Address = document.myForm.Address.value;
+    var City = document.myForm.City.value;
+    var Pin_Code = document.myForm.Pin_Code.value;
+    var State = document.myForm.State.value;
+    var sclname = document.myForm.sclname.value;
+    var sclplace = document.myForm.sclplace.value;
+    var sclmark = document.myForm.sclmark.value;
+    var clgname = document.myForm.clgname.value;
+    var clgplace = document.myForm.clgplace.value;
+    var course = document.myForm.course.value;
+    var clgmark = document.myForm.clgmark.value;
+    var createpass = document.myForm.createpass.value;
+    var repass = document.myForm.repass.value;
+
+
+    if (name == "") {
+     printError("nameErr", "Please enter your name");
+
+     }
+        else {
+        var regex = /^[a-zA-Z\s]+$/;                
+        if(regex.test(name) === false) {
+            printError("nameErr", "Please enter a valid name");
+        } else {
+            printError("nameErr", "");
+            nameErr = false;
+        }
+
+     }   
+      if (dob == "") {
+     printError("dobErr", "Please enter your DateofBirth");
+
+     } 
+      if (Email_Id == "") {
+     printError("mailErr", "Please enter your email");
+     }
+     else {
+        // Regular expression for basic email validation
+        var regex = /^\S+@\S+\.\S+$/;
+        if(regex.test(Email_Id) === false) {
+            printError("mailErr", "Please enter a valid email address");
+        } else{
+            printError("mailErr", "");
+            mailErr = false;
+        }
+    }
+
+
+      if (Mobile_Number == "") {
+     printError("mblErr", "Please enter your Mobile Number");
+
+     } else{
+        var regex = /^[0-9]{10}/;
+        if(regex.test(Mobile_Number) === false){
+            printError("mblErr" , "please enter a valid number");
+
+        }
+        else{
+            printError("mblErr","");
+            mblErr = false;
+        }
+     }
+      if (Gender == "") {
+     printError("genderErr", "Please enter your Gender");
+
+     } 
+      if (Address == "") {
+     printError("addErr", "Please enter your Address");
+
+     } 
+      if (City == "") {
+     printError("cityErr", "Please enter your City");
+
+     }    
+      if (Pin_Code == "") {
+     printError("pincodeErr", "Please enter your Pin_Code");
+
+     } else{
+        var regex = /^[0-9]{6}/;
+        if(regex.test(Pin_Code) === false){
+            printError("pincodeErr" , "please enter a valid pincode");
+
+        }
+        else{
+            printError("pincodeErr","");
+            pincodeErr = false;
+        }
+     }
+      if (State == "") {
+     printError("stateErr", "Please enter your State");
+
+     } 
+      if (sclname == "") {
+     printError("sclnameErr", "Please enter your sclname");
+
+     } 
+      if (sclplace == "") {
+     printError("sclplaceErr", "Please enter your sclplace");
+
+     } 
+      if (sclmark == "") {
+     printError("sclmarkErr", "Please enter your sclmark");
+
+     } 
+     else{
+        var regex = /^[0-9]{3}/;
+        if (regex>=0 && regex <=100){
+        if(regex.test(sclmark) === false){
+            printError("sclmarkErr" , "please enter a valid mark");
+
+        }
+        else{
+            printError("sclmarkErr","");
+            sclmarkErr = false;
+        }
+     }else{
+        printError("sclmarkErr","please enter a valid mark (0-100)");
+     }
+
+    }
+
+      if (clgname == "") {
+     printError("clgnameErr", "Please enter your clgname");
+
+     } 
+      if (clgplace == "") {
+     printError("clgplaceErr", "Please enter your clgplace");
+
+     } 
+      if (course == "") {
+     printError("courseErr", "Please enter your course");
+
+     } 
+      if (clgmark == "") {
+     printError("clgmarkErr", "Please enter your clgmark");
+
+     } 
+     else{
+        var regex = /^[0-9]{3}/;
+         if (regex>=0 && regex <=100){
+        if(regex.test(clgmark) === false){
+            printError("clgmarkErr" , "please enter a valid mark");
+
+        }
+        else{
+            printError("clgmarkErr","");
+            clgmarkErr = false;
+        }
+        }else{
+        printError("clgmarkErr","please enter a valid mark (0-100)");
+     }
+     }
+      if (createpass == "") {
+     printError("passErr", "Please enter your password");
+
+     } 
+      if (repass == "") {
+     printError("repassErr", "Please enter your conform password");
+
+     } 
+}
+</script>
 </head> 
 
 <body class="bg-gradient-primary">
@@ -81,13 +253,13 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            <form class="my_form user row g-3 needs-validation" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="myform">
+                            <form class="my_form user row g-3 needs-validation" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" name="myForm" onsubmit="return validateForm()">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
 
                                         <div class="form-floating ">
-                                            <input type="text" class="form-control form-control-user" placeholder="First Name" name="First_Name" required> 
-                                            <small class="small error">*<span class="small error"><?php //echo $nameErr; ?></span></small>
+                                            <input type="text" class="form-control form-control-user" placeholder="First Name" name="First_Name" > 
+                                            <small class="small error">*<span id="nameErr" class="small"></span></small>
                                             <label for="pwd" class="small">First Name</label>
                                              
                                         </div>
@@ -105,13 +277,16 @@
 
                                         <div class="form-floating mt-3 mb-3">
                                             <input type="date" class="form-control form-control-user"placeholder="Date Of Birth" name="dob" required>
+                                            <small class="small error">*<span id="dobErr" class="small"></span></small>
+
                                             <label for="pwd" class="small">Date Of Birth</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
 
                                         <div class="form-floating mt-3 mb-3">
-                                            <input type="email" class="form-control form-control-user"placeholder="Email" name="Email_Id" required>
+                                            <input type="email" class="form-control form-control-user"placeholder="Email" name="Email_Id" required><small class="small error">*<span id="mailErr" class="small"></span></small>
+
                                             <label for="pwd" class="small">Email Id</label>
                                         </div>
                                     </div>
@@ -121,7 +296,8 @@
                                    <div class="col-sm-6 mb-3 mb-sm-0">
 
                                         <div class="form-floating mt-3 mb-3">
-                                            <input type="text" class="form-control form-control-user"placeholder="Mobile_Number" name="Mobile_Number" id="mblnum" maxlength="10" required pattern="[6789][0-9]*">
+                                            <input type="text" class="form-control form-control-user"placeholder="Mobile_Number" name="Mobile_Number" id="mblnum" maxlength="10"required pattern="[6789][0-9]{10}"><small class="small error">*<span id="mblErr" class="small"></span></small>
+
                                             <label for="pwd" class="small">Mobile Number</label>
                                         </div>
                                     </div>
@@ -130,10 +306,11 @@
                                         <div class="form-floating mt-3 mb-3">
                                             <div class="form-floating">
                                                 <select class="form-select form-control form-control-user " id="floatingSelect" name="Gender" required>
+
                                                 <option value="1">Male</option>
                                                 <option value="2">Female</option>
                                                 <option value="3">Others</option>
-                                                </select>
+                                                </select><small class="small error">*<span id="genderErr" class="small"></span></small>
                                                 <label for="Gender" class="small">Gender</label>
                                             </div>
                                         </div>
@@ -144,14 +321,14 @@
                                     <div class="col-sm-6 mb-3 mb-sm-0">
 
                                         <div class="form-floating mt-3 mb-3">
-                                            <input type="text" class="form-control form-control-user"placeholder="Address" name="Address" required>
+                                            <input type="text" class="form-control form-control-user"placeholder="Address" name="Address" required><small class="small error">*<span id="addErr" class="small"></span></small>
                                             <label for="pwd" class="small">Address</label>
                                         </div>
                                     </div>
                                    <div class="col-sm-6 mb-3 mb-sm-0">
 
                                         <div class="form-floating mt-3 mb-3">
-                                            <input type="text" class="form-control form-control-user"placeholder="City Name" name="City" required>
+                                            <input type="text" class="form-control form-control-user"placeholder="City Name" name="City" required><small class="small error">*<span id="cityErr" class="small"></span></small>
                                             <label for="pwd" class="small">City Name</label>
                                         </div>
                                     </div>
@@ -160,14 +337,14 @@
                                    <div class="col-sm-6 mb-3 mb-sm-0">
 
                                         <div class="form-floating mt-3 mb-3">
-                                            <input type="text" class="form-control form-control-user"placeholder="Pin_Code" name="Pin_Code" maxlength="6" pattern="[0-9]*" required>
+                                            <input type="text" class="form-control form-control-user"placeholder="Pin_Code" name="Pin_Code" maxlength="6"  required pattern="[0-9]{6}"><small class="small error">*<span id="pincodeErr" class="small"></span></small>
                                             <label for="pwd" class="small">Pin Code</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
 
                                         <div class="form-floating mt-3 mb-3">
-                                            <input type="text" class="form-control form-control-user"placeholder="State Name" name="State" required>
+                                            <input type="text" class="form-control form-control-user"placeholder="State Name" name="State" required><small class="small error">*<span id="stateErr" class="small"></span></small>
                                             <label for="pwd" class="small">State Name</label>
                                         </div>
                                     </div>
@@ -183,7 +360,7 @@
                                     <div class="col-sm-6 mb-3 mb-sm-0">
 
                                         <div class="form-floating mt-3 mb-3">
-                                            <input type="text" class="form-control form-control-user" placeholder="School Name" name="sclname" required>
+                                            <input type="text" class="form-control form-control-user" placeholder="School Name" name="sclname" required><small class="small error">*<span id="sclnameErr" class="small"></span></small>
                                             <label for="pwd" class="small">School Name</label>
                                         </div>
                                     </div>
@@ -192,15 +369,15 @@
                                     <div class="col-sm-6 mb-3 mb-sm-0">
 
                                         <div class="form-floating mt-3 mb-3">
-                                            <input type="text" class="form-control form-control-user" placeholder="School Address" name="sclplace" required>
+                                            <input type="text" class="form-control form-control-user" placeholder="School Address" name="sclplace" required><small class="small error">*<span id="sclplaceErr" class="small"></span></small>
                                             <label for="pwd" class="small">School Address</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
 
                                         <div class="form-floating mt-3 mb-3">
-                                            <input type="text" class="form-control form-control-user" placeholder="Your Percentage" name="sclmark" required>
-                                            <label for="pwd" class="small">Your Percentage</label>
+                                            <input type="text" class="form-control form-control-user" placeholder="Your Percentage" name="sclmark" required maxlength="3"><small class="small error">*<span id="sclmarkErr" class="small"></span></small>
+                                            <label for="pwd" class="small">Your Percentage At School</label>
                                         </div>
                                     </div>
                                 </div>
@@ -208,14 +385,14 @@
                                     <div class="col-sm-6 mb-3 mb-sm-0">
 
                                         <div class="form-floating mt-3 mb-3">
-                                            <input type="text" class="form-control form-control-user" placeholder="College Name" name="clgname" required>
+                                            <input type="text" class="form-control form-control-user" placeholder="College Name" name="clgname" required><small class="small error">*<span id="clgnameErr" class="small"></span></small>
                                             <label for="pwd" class="small">College Name</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
 
                                         <div class="form-floating mt-3 mb-3">
-                                            <input type="text" class="form-control form-control-user" placeholder="College Address" name="clgplace" required>
+                                            <input type="text" class="form-control form-control-user" placeholder="College Address" name="clgplace" required><small class="small error">*<span id="clgplaceErr" class="small"></span></small>
                                             <label for="pwd" class="small">College Address</label>
                                         </div>
                                     </div>
@@ -224,15 +401,15 @@
                                     <div class="col-sm-6 mb-3 mb-sm-0">
 
                                         <div class="form-floating mt-3 mb-3">
-                                            <input type="text" class="form-control form-control-user" placeholder="Course Name" name="course" required>
+                                            <input type="text" class="form-control form-control-user" placeholder="Course Name" name="course" required><small class="small error">*<span id="courseErr" class="small"></span></small>
                                             <label for="pwd" class="small">Course Name</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
 
                                         <div class="form-floating mt-3 mb-3">
-                                            <input type="text" class="form-control form-control-user" placeholder="Your Percentage" name="clgmark" required>
-                                            <label for="pwd" class="small">Your Percentage</label>
+                                            <input type="text" class="form-control form-control-user" placeholder="Your Percentage" name="clgmark" required maxlength="3"><small class="small error">*<span id="clgmarkErr" class="small"></span></small>
+                                            <label for="pwd" class="small">Your Percentage At college</label>
                                         </div>
                                     </div>
                                 </div> 
@@ -243,7 +420,7 @@
                                     <div class="col-sm-6 mb-3 mb-sm-0">
 
                                         <div class="form-floating mt-3 mb-3">
-                                            <input type="password" id="psw" class="form-control form-control-user"placeholder="Enter password" name="createpass" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                                            <input type="password" id="psw" class="form-control form-control-user"placeholder="Enter password" name="createpass" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"><small class="small error">*<span id="passErr" class="small"></span></small>
                                             <label for="pwd" class="small">Create Password</label>
                                             
                                         </div>
@@ -251,7 +428,7 @@
                                      <div class="col-sm-6 mb-3 mb-sm-0">
 
                                         <div class="form-floating mt-3 mb-3">
-                                            <input type="password" id="psw" class="form-control form-control-user"placeholder="Repeat password" name="repass" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"> 
+                                            <input type="password" id="psw" class="form-control form-control-user"placeholder="Repeat password" name="repass" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"> <small class="small error">*<span id="repassErr" class="small"></span></small>
                                             <label for="pwd" class="small">Repeat Password</label>
                                         </div>
                                     </div>
@@ -264,7 +441,7 @@
                                     </div>
                                 </div>
 
-                                <input type="submit" name="submit" value="REGISTER" class="btn btn-primary btn-user btn-block">
+                               <input type="submit" name="submit" onclick="validateForm()" value="REGISTER" class="btn btn-primary btn-user btn-block">
                                     
                                 
                                 <hr style="background-color: white;">
@@ -360,7 +537,6 @@ myInput.onkeyup = function() {
   }
 }
 </script>
-    
 
 </body>
 
@@ -373,22 +549,11 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 if(isset($_POST['submit'])){
-$servername = "localhost";
-$username = "root";
-$password = "1234";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password);
-
-// Check connection
-if ($conn->connect_error){
-die("Connection failed: " . $conn->connect_error);
-} 
-echo "Connected successfully";
+include 'connection.php' ;
 
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+/*if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 function test_input($data) {
 $data = trim($data);
@@ -498,9 +663,9 @@ $scladdErr =$sclperErr = $clgnameErr = $clgaddErr = $courseErr = $clgperErr = $c
   $lname = test_input($_POST['Last_Name']);
   $country = test_input($_POST['Country']);
 
-}
+}*/
 
-/*$fname = $_POST['First_Name'];
+$fname = $_POST['First_Name'];
 $lname = $_POST['Last_Name'];
 $dob = $_POST['dob'];
 $email = $_POST['Email_Id'];
@@ -522,21 +687,54 @@ $course = $_POST['course'];
 $clgmark = $_POST['clgmark'];
 
 $setpass = $_POST['createpass'];
-$repass = $_POST['repass'];*/
-
+$repass = $_POST['repass'];
+$hashpass = "";
 
 if($setpass == $repass){
     $hashpass = md5($setpass);
-    echo "password hashed";
+}else{
+    $Errmsg = "password doesn\'t match";
+ echo "<script>alert('$Errmsg');</script>";
 }
-else{
-    echo "password doesn't match";
-}
+if($fname != null && $dob!=null&&$email!=null&&$num!=null&&$gender!=null&&$address!=null&&$city!=null&&$pincode!=null&&$state!=null&&$country!=null&&$hashpass!=null&&$sclname!=null&&$scladdress!=null&&$sclmark!=null&&$clgname!=null&&$clgaddress!=null&&$course!=null&&$clgmark!=null){
+    $fnameErr=$numErr=$emailErr=$pincodeErr=$sclmarkErr=$clgmarkErr= "";
+    if (!preg_match("/^[a-zA-Z]*$/",$fname)) {
+        $fnameErr = "only alphabets and white space are allowed in FirstName";
+    }
+    if (!preg_match("/^[6-9][0-9]{9}$/",$num)){
+        $numErr = "only numeric values are allowed in MobileNumber and Mobile Number must have 10 digits";
+    }
+    if(!preg_match("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^",$email)){
+        $emailErr = "Email is not valid";
+    }else{
+        $emsel="SELECT email FROM info.empinfo WHERE email='$email'";
+        $emailsame = $conn->query($emsel);
+        if($emailsame->num_rows===1 ){
+            echo "<script>alert('This email is already exists');</script>";
+            exit();
+        }
+    }
+    
+    
+    if (!preg_match("/^[0-9]{6}$/",$pincode)) {
+        $pincodeErr = "only numeric values are allowed in pincode and Pin Code Number must have 6 digits";
+    }
+    if (!preg_match("/^[0-9]{3}$/",$sclmark)) {
+        $sclmarkErr = "only numeric values are allowed in pecentage and school mark percentage must have 3 digits";
+    }
+    if (!preg_match("/^[0-9]{3}$/",$clgmark)) {
+        $clgmarkErr = "only numeric values are allowed in percentagen and college mark percentage must have 3 digits";
+    }
+        if ($fnameErr == null &&$numErr == null && $emailErr == null && $pincodeErr == null && $sclmarkErr == null && $clgmarkErr ==null ) {
+            
 
-if($fname!=null&&$dob!=null&&$email!=null&&$num!=null&&$gender!=null&&$address!=null&&$city!=null&&$pincode!=null&&$state!=null&&$country!=null&&$hashpass!=null&&$sclname!=null&&$scladdress!=null&&$sclmark!=null&&$clgname!=null&&$clgaddress!=null&&$course!=null&&$clgmark!=null){
+
+
+
+
 $ins = "INSERT INTO info.empinfo(firstname,lastname,dob,email,phone,gender,address,city,pincode,state,country,password) VALUES('$fname','$lname','$dob','$email','$num','$gender','$address','$city','$pincode','$state','$country','$hashpass')";
 if($conn->query($ins) === TRUE){
-    echo "<br>inserted successfully<br>";
+   // echo "<br>inserted successfully<br>";
     $empid = $conn->insert_id;
 
 }
@@ -546,21 +744,31 @@ else{
 
 $sclins = "INSERT INTO info.school(sclname,address,mark,empid) VALUES('$sclname','$scladdress','$sclmark','$empid')";
 if($conn->query($sclins) === TRUE){
-    echo "successfully inserted in scl<br>";
+   // echo "successfully inserted in scl<br>";
 }
 else{
     echo "somthing wrong";
 }
 $clgins = "INSERT INTO info.college(clgname,course,address,mark,empid) VALUES('$clgname','$clgaddress','$course','$clgmark','$empid')";
 if($conn->query($clgins) === TRUE){
-    echo "successfully inserted into clg";
+    //echo "successfully inserted into clg";
 }
 else{
     echo "somthing wrong";
 }
 
 
-echo "<a href='login.html'>Click me to go login form</a>";
+echo "<script>alert('Successfully Registered');
+        window.location.href='login.php';
+</script>";
+}
+else{
+     echo "<script>alert('$fnameErr.$numErr.$emailErr.$pincodeErr.$sclmarkErr.$clgmarkErr');</script>";
+
+}
+}
+else{
+    echo "<script>alert('Fill up required field')</script>";
 }
 $conn->close();
 
