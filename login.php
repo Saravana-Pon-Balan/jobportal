@@ -104,25 +104,14 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 if(isset($_POST['submit'])){
-$servername = "localhost";
-$username = "root";
-$password = "1234";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password);
-
-// Check connection
-if ($conn->connect_error){
-die("Connection failed: " . $conn->connect_error);
-} 
-echo "Connected successfully";
+include "connection.php";
 
 
 $email = $_POST['Email_Id'];
 $pass  = $_POST['pswd'];
 $pswd = md5($pass);
 
-$sel = "SELECT * FROM info.empinfo WHERE email='$email' AND password ='$pswd'";
+$sel = "SELECT * FROM empinfo WHERE email='$email' AND password ='$pswd'";
 $res = $conn->query($sel);
 if($res->num_rows === 1){
     $row = $res->fetch_assoc();

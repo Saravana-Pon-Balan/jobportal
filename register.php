@@ -707,7 +707,7 @@ if($fname != null && $dob!=null&&$email!=null&&$num!=null&&$gender!=null&&$addre
     if(!preg_match("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^",$email)){
         $emailErr = "Email is not valid";
     }else{
-        $emsel="SELECT email FROM info.empinfo WHERE email='$email'";
+        $emsel="SELECT email FROM empinfo WHERE email='$email'";
         $emailsame = $conn->query($emsel);
         if($emailsame->num_rows===1 ){
             echo "<script>alert('This email is already exists');</script>";
@@ -732,7 +732,7 @@ if($fname != null && $dob!=null&&$email!=null&&$num!=null&&$gender!=null&&$addre
 
 
 
-$ins = "INSERT INTO info.empinfo(firstname,lastname,dob,email,phone,gender,address,city,pincode,state,country,password) VALUES('$fname','$lname','$dob','$email','$num','$gender','$address','$city','$pincode','$state','$country','$hashpass')";
+$ins = "INSERT INTO empinfo(firstname,lastname,dob,email,phone,gender,address,city,pincode,state,country,password) VALUES('$fname','$lname','$dob','$email','$num','$gender','$address','$city','$pincode','$state','$country','$hashpass')";
 if($conn->query($ins) === TRUE){
    // echo "<br>inserted successfully<br>";
     $empid = $conn->insert_id;
@@ -742,14 +742,14 @@ else{
     echo "not inserted";
 }
 
-$sclins = "INSERT INTO info.school(sclname,address,mark,empid) VALUES('$sclname','$scladdress','$sclmark','$empid')";
+$sclins = "INSERT INTO school(sclname,address,mark,empid) VALUES('$sclname','$scladdress','$sclmark','$empid')";
 if($conn->query($sclins) === TRUE){
    // echo "successfully inserted in scl<br>";
 }
 else{
     echo "somthing wrong";
 }
-$clgins = "INSERT INTO info.college(clgname,course,address,mark,empid) VALUES('$clgname','$clgaddress','$course','$clgmark','$empid')";
+$clgins = "INSERT INTO college(clgname,course,address,mark,empid) VALUES('$clgname','$clgaddress','$course','$clgmark','$empid')";
 if($conn->query($clgins) === TRUE){
     //echo "successfully inserted into clg";
 }

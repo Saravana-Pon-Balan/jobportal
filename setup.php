@@ -69,13 +69,4 @@ else{
 }	*/
 
 
-$alt = "ALTER TABLE info.empinfo modify password nvarchar(100) NOT NULL";
-if($conn->query($alt) === TRUE){
-	echo "success";
-}
-else{
-	echo "failed";
-}
-
-
  ?>
