@@ -87,10 +87,7 @@ include "connection.php";
                                     $lname = ""; 
                                     $fname = "SELECT firstname FROM empinfo WHERE empid = 1";
                                     $lname = "SELECT lastname FROM empinfo WHERE empid = 1";
-
-                                    
-                                        echo $fname.' '.$lname;
-                            
+                                    echo $fname.' '.$lname;
                                 ?></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
