@@ -88,12 +88,9 @@ include "connection.php";
                                     $fname = "SELECT firstname FROM empinfo WHERE empid = 1";
                                     $lname = "SELECT lastname FROM empinfo WHERE empid = 1";
 
-                                    if($conn->query($fname) === TRUE){
+                                    
                                         echo $fname.' '.$lname;
-                                    }
-                                    else{
-                                        echo "error";
-                                    }
+                            
                                 ?></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
