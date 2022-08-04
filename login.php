@@ -116,7 +116,8 @@ $res = $conn->query($sel);
 if($res->num_rows === 1){
     $row = $res->fetch_assoc();
     if($row['email'] === $email && $row['password'] === $pswd){
-        echo "logging success";
+        echo "<script>alert('logging success');
+        window.location.href='index.html'</script>";
     }
     else{
         echo "incorrect password";
