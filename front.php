@@ -1,3 +1,10 @@
+<?php 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+include "connection.php";
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,12 +83,16 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php 
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php
+                                    $lname = ""; 
                                     $fname = "SELECT firstname FROM empinfo WHERE empid = 1";
                                     $lname = "SELECT lastname FROM empinfo WHERE empid = 1";
 
-                                    if($conn->query($name) === TRUE && $conn->query($name) === TRUE){
+                                    if($conn->query($fname) === TRUE){
                                         echo $fname.' '.$lname;
+                                    }
+                                    else{
+                                        echo "error";
                                     }
                                 ?></span>
                                 <img class="img-profile rounded-circle"
