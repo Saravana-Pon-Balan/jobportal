@@ -87,7 +87,7 @@ include "connection.php";
                                     $lname = ""; 
                                     $fname = "SELECT firstname FROM empinfo WHERE empid = 1";
                                     $lname = "SELECT lastname FROM empinfo WHERE empid = 1";
-                                    echo $fname.' '.$lname;
+                                    echo $fname." ".$lname;
                                 ?></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
@@ -112,7 +112,57 @@ include "connection.php";
                 </nav>
 <div class="body">
         
+    <center><h2>Employee Details</h2></center>
+    <?php
+        $empid = "SELECT empid FROM empinfo WHERE empid = 1";
+        $fname = "SELECT firstname FROM empinfo WHERE empid = 1";
+        $lname = "SELECT lastname FROM empinfo WHERE empid = 1";
+        $dob = "SELECT dob FROM empinfo WHERE empid = 1";
+        $email = "SELECT email FROM empinfo WHERE empid = 1";
+        $num = "SELECT phone FROM empinfo WHERE empid = 1";
+        $gender = "SELECT gender FROM empinfo WHERE empid = 1";
+        $address = "SELECT address FROM empinfo WHERE empid = 1";
+        $city = "SELECT city FROM empinfo WHERE empid = 1";
+        $pincode = "SELECT pincode FROM empinfo WHERE empid = 1";
+        $state = "SELECT state FROM empinfo WHERE empid = 1";
+        $country = "SELECT country FROM empinfo WHERE empid = 1";
+        $created_at = "SELECT created_at FROM empinfo WHERE empid = 1";
+        $updated_at = "SELECT updated_at FROM empinfo WHERE empid = 1";
+        $password = "SELECT password FROM empinfo WHERE empid = 1";
+        $sclname = "SELECT sclname FROM school WHERE id = 1";
+        $scladd = "SELECT address FROM school WHERE id = 1";
+        $sclmark = "SELECT mark FROM school WHERE id = 1";
+        $clgname = "SELECT clgname FROM college WHERE id = 1";
+        $course = "SELECT course FROM college WHERE id = 1";
+        $clgadd = "SELECT address FROM college WHERE id = 1";
+        $clgmark = "SELECT mark FROM college WHERE id = 1";
 
+        echo $empid."<br>";
+        echo $fname."<br>";
+        echo $lname."<br>";
+        echo $dob."<br>";
+        echo $email."<br>";
+        echo $num."<br>";
+        echo $gender."<br>";
+        echo $address."<br>";
+        echo $city."<br>";
+        echo $pincode."<br>";
+        echo $state."<br>";
+        echo $country."<br>";
+        echo $created_at."<br>";
+        echo $updated_at."<br>";
+        echo $password."<br>";
+        echo $sclname."<br>";
+        echo $scladd."<br>";
+        echo $sclmark."<br>";
+        echo $clgname."<br>";
+        echo $course."<br>";
+        echo $clgadd."<br>";
+        echo $clgmark."<br>";
+
+
+
+      ?>
 </div>
 
                 
