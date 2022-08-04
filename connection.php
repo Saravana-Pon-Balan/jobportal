@@ -1,7 +1,7 @@
 
 <?php
 
-$servername = "www.db4free.net/phpMyAdmin";
+$servername = "www.db4free.net";
 $username = "root_1515";
 $password = "Saravana@2003.";
 
