@@ -1,7 +1,7 @@
 <?php 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-  include "connection.php";
+  include "localconn.php";
 ?>
 
 
@@ -30,7 +30,6 @@ ini_set('display_errors', 1);
 </head>
 
 <body id="page-top">
-
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -113,7 +112,7 @@ ini_set('display_errors', 1);
                     </ul>
 
                 </nav>
-<div class="body" style="text-align: center;">
+<div style="text-align: center;">
         
     <center><h2>Employee Details</h2></center>
    <?php

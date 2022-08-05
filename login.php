@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -104,18 +105,21 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 if(isset($_POST['submit'])){
-include "connection.php";
+include "localconn.php";
 
 
 $email = $_POST['Email_Id'];
 $pass  = $_POST['pswd'];
 $pswd = md5($pass);
 
+
+
 $sel = "SELECT * FROM empinfo WHERE email='$email' AND password ='$pswd'";
 $res = $conn->query($sel);
 if($res->num_rows === 1){
     $row = $res->fetch_assoc();
     if($row['email'] === $email && $row['password'] === $pswd){
+
         echo "<script>alert('logging success');
         window.location.href='front.php'</script>";
     }
@@ -126,6 +130,8 @@ if($res->num_rows === 1){
 else{
     echo "no rows";
 }
+
+
 $conn->close();
 }
 ?>
