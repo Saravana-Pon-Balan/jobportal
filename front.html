@@ -1,7 +1,7 @@
 <?php 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-  include "connection.php";
+  include "localconn.php";
 ?>
 
 
@@ -87,10 +87,9 @@ ini_set('display_errors', 1);
                                   
 
                                     $lname = ""; 
-                                    $fname = "SELECT firstname,lastname FROM empinfo WHERE empid = 1";
-                                    $name = $conn->query($fname);
-                                    $row = $name->fetch_assoc();
-                                    echo $row['firstname']." ".$row['lastname'];
+                                    $fname = "SELECT firstname FROM empinfo WHERE empid = 1";
+                                    $lname = "SELECT lastname FROM empinfo WHERE empid = 1";
+                                    echo $fname." ".$lname;
                                 ?></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
@@ -113,52 +112,55 @@ ini_set('display_errors', 1);
                     </ul>
 
                 </nav>
-<div class="body" style="text-align: center;">
+<div class="body">
         
     <center><h2>Employee Details</h2></center>
-   <?php
-        $emp = $conn->query("SELECT * FROM empinfo WHERE empid = 1");
-    
-        $school = $conn->query("SELECT * FROM school WHERE id = 1");
-        
-        $college = $conn->query("SELECT * FROM college WHERE id = 1");
-      
-        echo "<hr><h3>Your Personal Informations</h3><hr>";
+    <?php
+        $empid = "SELECT empid FROM empinfo WHERE empid = 1";
+        $fname = "SELECT firstname FROM empinfo WHERE empid = 1";
+        $lname = "SELECT lastname FROM empinfo WHERE empid = 1";
+        $dob = "SELECT dob FROM empinfo WHERE empid = 1";
+        $email = "SELECT email FROM empinfo WHERE empid = 1";
+        $num = "SELECT phone FROM empinfo WHERE empid = 1";
+        $gender = "SELECT gender FROM empinfo WHERE empid = 1";
+        $address = "SELECT address FROM empinfo WHERE empid = 1";
+        $city = "SELECT city FROM empinfo WHERE empid = 1";
+        $pincode = "SELECT pincode FROM empinfo WHERE empid = 1";
+        $state = "SELECT state FROM empinfo WHERE empid = 1";
+        $country = "SELECT country FROM empinfo WHERE empid = 1";
+        $created_at = "SELECT created_at FROM empinfo WHERE empid = 1";
+        $updated_at = "SELECT updated_at FROM empinfo WHERE empid = 1";
+        $password = "SELECT password FROM empinfo WHERE empid = 1";
+        $sclname = "SELECT sclname FROM school WHERE id = 1";
+        $scladd = "SELECT address FROM school WHERE id = 1";
+        $sclmark = "SELECT mark FROM school WHERE id = 1";
+        $clgname = "SELECT clgname FROM college WHERE id = 1";
+        $course = "SELECT course FROM college WHERE id = 1";
+        $clgadd = "SELECT address FROM college WHERE id = 1";
+        $clgmark = "SELECT mark FROM college WHERE id = 1";
 
-        $row = $emp->fetch_assoc();
-     
-        echo "Your ID is : ".$row['empid']."<br>";
-        echo "Your Name is :".$row['firstname']." ".$row['lastname']."<br>";
-        echo "Your Date Of Birth is : ".$row['dob']."<br>";
-        echo "Your Email Id is : ".$row['email']."<br>";
-        echo "Your Mobile Number is : ".$row['phone']."<br>";
-        echo "Your Gender is : ".$row['gender']."<br>";
-        echo "Your Address is : ".$row['address']."<br>";
-        echo "Your City is : ".$row['city']."<br>";
-        echo "Your Pin Code is : ".$row['pincode']."<br>";
-        echo "Your State is : ".$row['state']."<br>";
-        echo "Your Country is : ".$row['country']."<br>";
-        echo "It is Created At : ".$row['created_at']."<br>";
-        echo "It is updated At: ".$row['updated_at']."<br><br>";
-        
-
-        echo "<hr><h3>Your School Informations</h3><hr>";
-        
-        $row = $school->fetch_assoc();
-        echo "Your Schoool Name is : ".$row['sclname']."<br>";
-        echo "Your School Address is : ".$row['address']."<br>";
-        echo "Your School Percentage is : ".$row['mark']."<br>";
-
-
-        echo "<hr><h3>Your College Informations</h3><hr>";
-
-        $row = $college->fetch_assoc();
-        echo "Your College Name is : ".$row['clgname']."<br>";
-        echo "Your College Address is : ".$row['address']."<br>";
-        echo "Your Course Name is : ".$row['course']."<br>";
-        echo "Your College Percentage is : ".$row['mark']."<br>";
-
-
+        echo $empid."<br>";
+        echo $fname."<br>";
+        echo $lname."<br>";
+        echo $dob."<br>";
+        echo $email."<br>";
+        echo $num."<br>";
+        echo $gender."<br>";
+        echo $address."<br>";
+        echo $city."<br>";
+        echo $pincode."<br>";
+        echo $state."<br>";
+        echo $country."<br>";
+        echo $created_at."<br>";
+        echo $updated_at."<br>";
+        echo $password."<br>";
+        echo $sclname."<br>";
+        echo $scladd."<br>";
+        echo $sclmark."<br>";
+        echo $clgname."<br>";
+        echo $course."<br>";
+        echo $clgadd."<br>";
+        echo $clgmark."<br>";
 
 
 
