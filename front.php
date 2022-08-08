@@ -1,7 +1,14 @@
 <?php 
+session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-  include "connection.php";
+ if(!isset($_SESSION['is_loggedin'])){
+    echo '<script>window.location.replace("index.php")</script>' ;
+  } 
+  
+
+
+  include "localconn.php";
 ?>
 
 
@@ -84,19 +91,20 @@ ini_set('display_errors', 1);
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php
                                   
+                                $cokemail = $_COOKIE['email'];
+                                      $get_row = $conn->query("SELECT * FROM empinfo WHERE email = '$cokemail'");
 
-                                    $lname = ""; 
-                                    $fname = "SELECT firstname,lastname FROM empinfo WHERE empid = 1";
-                                    $name = $conn->query($fname);
-                                    $row = $name->fetch_assoc();
-                                    echo $row['firstname']." ".$row['lastname'];
+
+                                 $get = $get_row->fetch_assoc();
+                                     echo $get['firstname']." ".$get['lastname'];
+
                                 ?></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                                aria-labelledby="userDropdown" id="dropdownlist">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -116,15 +124,26 @@ ini_set('display_errors', 1);
         
     <center><h2>Employee Details</h2></center>
    <?php
-        $emp = $conn->query("SELECT * FROM empinfo WHERE empid = 1");
+   $ses = $_SESSION['email'];
+   echo  $ses;
+
+    $cokemail = $_COOKIE['email'];
+        $get_row = $conn->query("SELECT * FROM empinfo WHERE email = '$cokemail'");
+
+
+    $get = $get_row->fetch_assoc();
+        $getempid = $get['empid'];
+
+
+    $get_row = $conn->query("SELECT * FROM empinfo WHERE email = '$cokemail'");
     
-        $school = $conn->query("SELECT * FROM school WHERE id = 1");
+    $scl_get_row = $conn->query("SELECT * FROM school WHERE empid = '$getempid'");
         
-        $college = $conn->query("SELECT * FROM college WHERE id = 1");
+    $clg_get_row = $conn->query("SELECT * FROM college WHERE empid = '$getempid'");
       
         echo "<hr><h3>Your Personal Informations</h3><hr>";
 
-        $row = $emp->fetch_assoc();
+        $row = $get_row->fetch_assoc();
      
         echo "Your ID is : ".$row['empid']."<br>";
         echo "Your Name is :".$row['firstname']." ".$row['lastname']."<br>";
@@ -143,7 +162,7 @@ ini_set('display_errors', 1);
 
         echo "<hr><h3>Your School Informations</h3><hr>";
         
-        $row = $school->fetch_assoc();
+        $row = $scl_get_row->fetch_assoc();
         echo "Your Schoool Name is : ".$row['sclname']."<br>";
         echo "Your School Address is : ".$row['address']."<br>";
         echo "Your School Percentage is : ".$row['mark']."<br>";
@@ -151,7 +170,7 @@ ini_set('display_errors', 1);
 
         echo "<hr><h3>Your College Informations</h3><hr>";
 
-        $row = $college->fetch_assoc();
+        $row = $clg_get_row->fetch_assoc();
         echo "Your College Name is : ".$row['clgname']."<br>";
         echo "Your College Address is : ".$row['address']."<br>";
         echo "Your Course Name is : ".$row['course']."<br>";
@@ -179,7 +198,7 @@ ini_set('display_errors', 1);
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="logout.php">Logout</a>
                 </div>
             </div>
         </div>
@@ -194,6 +213,13 @@ ini_set('display_errors', 1);
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+  <!--  <script>
+        function drop(){
+            document.getElementById("dropdownlist").classList.add("show");
+
+        }
+
+    </script>-->
 
 </body>
 

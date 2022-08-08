@@ -1,5 +1,51 @@
 
 <!DOCTYPE html>
+<?php
+if(!isset($_SESSION['email']))
+{
+  session_start();
+ 
+}
+ if(isset($_SESSION['is_loggedin'])){
+    echo '<script>window.location.replace("front.php")</script>' ;
+  }  
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+if(isset($_POST['submit'])){
+include "localconn.php";
+$email = $_POST['Email_Id'];
+$pass  = $_POST['pswd'];
+$pswd = md5($pass);
+
+
+
+$sel = "SELECT * FROM empinfo WHERE email='$email' AND password ='$pswd'";
+$res = $conn->query($sel);
+if($res->num_rows === 1){
+    $row = $res->fetch_assoc();
+    if($row['email'] === $email && $row['password'] === $pswd){
+        // setting COKKIES .......
+        setcookie('email', $email, time() + (86400 * 30), "/");
+        $_SESSION['email'] = $email;
+        $_SESSION['is_loggedin'] =1;
+        echo "<script>alert('logging success');
+        window.location.replace('front.php');</script>";
+    }
+    else{
+        echo " incorrect password";
+    }
+}
+else{
+    echo "<script>alert('incorrect username or password');</script>";
+}
+
+
+$conn->close();
+}
+?>
+
+
 <html lang="en">
 
 <head>
@@ -101,37 +147,3 @@
 </body>
 
 </html>
-<?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-if(isset($_POST['submit'])){
-include "connection.php";
-
-
-$email = $_POST['Email_Id'];
-$pass  = $_POST['pswd'];
-$pswd = md5($pass);
-
-
-
-$sel = "SELECT * FROM empinfo WHERE email='$email' AND password ='$pswd'";
-$res = $conn->query($sel);
-if($res->num_rows === 1){
-    $row = $res->fetch_assoc();
-    if($row['email'] === $email && $row['password'] === $pswd){
-
-        echo "<script>alert('logging success');
-        window.location.href='front.php'</script>";
-    }
-    else{
-        echo "incorrect password";
-    }
-}
-else{
-    echo "no rows";
-}
-
-
-$conn->close();
-}
-?>
