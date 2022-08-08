@@ -13,7 +13,7 @@ if(!isset($_SESSION['email']))
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 if(isset($_POST['submit'])){
-include "localconn.php";
+include "connection.php";
 $email = $_POST['Email_Id'];
 $pass  = $_POST['pswd'];
 $pswd = md5($pass);
